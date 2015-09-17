@@ -19,8 +19,7 @@
 </div>
 <div class="col-lg-12">
 <ul>
-<%dictionary_file = JSON.parse(File.read("dictionary_file.json"))%>
-<% dictionary_file.each do |entry| %>
+<% @dictionary_file.each do |entry| %>
 <li><%=entry["word"]%> = <%=entry["definition"]%></li>
 <%end%>
 </ul>
