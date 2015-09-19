@@ -20,7 +20,7 @@
 <div class="col-lg-12">
 <ul>
 <% @array_of_hashes.find_all do |entry| %>
-<% if entry["word"].start_with?(search) %>
+<% if entry["word"].start_with?(@search) %>
 <li><%=entry["word"]%> = <%=entry["definition"]%></li>
 <%end%>
 <%end%>

@@ -1,7 +1,5 @@
-require 'net/https'
 require 'sinatra'
 require 'json'
-require 'erb'
 
 get '/' do
   @dictionary_file = JSON.parse(File.read("dictionary_file.json"))
