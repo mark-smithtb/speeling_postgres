@@ -1,28 +1,35 @@
 <html>
 <head>
-<meta charset="utf-8">
-<title>TIY Dictionary</title>
-<link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+  <meta charset="utf-8">
+  <title>TIY Dictionary</title>
+  <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
 </head>
 <body>
-<div class="navbar navbar-default">
-<a href="/" class="navbar-brand">Home</a>
-<form method="POST" action="/save" class="navbar-form navbar-right">
-Word <input name = "word">
-Definition <input name = "definition">
-<button type = "submit" class="btn btn-success">Add word</button>
-</form>
-<form method="GET" action="/search" class="navbar-form navbar-right">
-<input name = "search_word">
-<button type="submit" class="btn btn-primary">Search word</button>
-</form>
-</div>
-<div class="col-lg-12">
-<ul>
-<% @dictionary_file.each do |entry| %>
-<li><%=entry["word"]%> = <%=entry["definition"]%></li>
-<%end%>
-</ul>
-</div>
+  <div class="navbar navbar-default">
+    <a href="/" class="navbar-brand">Home</a>
+    <form method="POST" action="/save" class="navbar-form navbar-right">
+      Word <input name = "word">
+      Definition <input name = "definition">
+      <button type = "submit" class="btn btn-success">Add word</button>
+    </form>
+    <form method="GET" action="/search" class="navbar-form navbar-right">
+      <input name = "search_word">
+      <button type="submit" class="btn btn-primary">Search word</button>
+    </form>
+  </div>
+  <div class="col-lg-12">
+    <ul>
+      <%  Word.all.each do |word|%>
+      <li> <%=word.word%>
+        <ul>
+          <!-- word.meanings.each -->
+          <% Meaning.where(word_id: word.id).each do |meaning| %>
+          <li><%= meaning.meaning %> </li>
+          <%end%>
+        </ul>
+      </li>
+      <%end%>
+    </ul>
+  </div>
 </body>
 </html>
